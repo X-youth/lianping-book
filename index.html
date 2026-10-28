@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>连平风物册</title>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div class="vignette"></div>
+<div class="grain"></div>
+<div class="progress"><i id="prog"></i></div>
+
+<button class="nav-home" id="navHome" title="回到目录">
+  <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+  <span>目录</span>
+</button>
+
+<div class="chapter-tabs" id="chapterTabs">
+  <button class="tab" data-go="2" data-chapter="ch1" title="读一段连平">01 读一段连平</button>
+  <button class="tab" data-go="3" data-chapter="ch2" title="走进山水">02 走进山水</button>
+  <button class="tab" data-go="4" data-chapter="ch3" title="点亮地方生活">03 花灯</button>
+  <button class="tab" data-go="5" data-chapter="ch4" title="尝一口连平">04 尝一口连平</button>
+</div>
+
+<div class="book" id="book">
+
+  <!-- ===== 0 封面 ===== -->
+  <section class="page cover-page" data-chapter="cover">
+    <div class="page-inner cover">
+      <div class="cover-text">
+        <div class="kicker">粤 · 河源 · 连平</div>
+        <h1 class="cover-title"><span>连平</span><span class="thin">风物册</span></h1>
+        <div class="cover-line"></div>
+        <p class="cover-lede">
+          一本可以翻的册子。<br>
+          四百年的县城，几百年的灯，还有山里开成一片的桃花。
+        </p>
+        <div class="cover-sub">LIANPING · A BOOK OF PLACES</div>
+        <div class="cover-hint">按 <b>→</b> 或点右下角箭头翻页</div>
+      </div>
+      <figure class="photo-frame">
+        <img src="./img/cover.jpg" alt="连平内莞山水">
+        <figcaption>连平 · 内莞</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 1 目录 ===== -->
+  <section class="page" data-chapter="toc">
+    <div class="page-inner">
+      <div class="toc-head">
+        <h2>目录</h2>
+        <span class="en">CONTENTS</span>
+      </div>
+      <div class="toc-list">
+        <div class="toc-item" style="--accent:#8a7a4e" data-goto="2">
+          <div class="toc-no">01</div>
+          <div>
+            <div class="toc-title">读一段连平</div>
+            <div class="toc-desc">四百年的县城，从一纸公文开始</div>
+          </div>
+          <div class="toc-arrow">—</div>
+        </div>
+        <div class="toc-item" style="--accent:#5f7d64" data-goto="3">
+          <div class="toc-no">02</div>
+          <div>
+            <div class="toc-title">走进山水</div>
+            <div class="toc-desc">内莞的峰、上坪的桃、山里的雾</div>
+          </div>
+          <div class="toc-arrow">—</div>
+        </div>
+        <div class="toc-item" style="--accent:#a3442f" data-goto="4">
+          <div class="toc-no">03</div>
+          <div>
+            <div class="toc-title">点亮地方生活</div>
+            <div class="toc-desc">一盏忠信花灯，拆开看是六个零件</div>
+          </div>
+          <div class="toc-arrow">→</div>
+        </div>
+        <div class="toc-item" style="--accent:#b0763f" data-goto="5">
+          <div class="toc-no">04</div>
+          <div>
+            <div class="toc-title">尝一口连平</div>
+            <div class="toc-desc">九重皮、香菇、鹰嘴桃</div>
+          </div>
+          <div class="toc-arrow">—</div>
+        </div>
+      </div>
+      <div class="toc-note">四个章节不必按顺序读——右边的小书签，随时能跳。</div>
+    </div>
+  </section>
+
+  <!-- ===== 2 章 01 ===== -->
+  <section class="page" data-chapter="ch1">
+    <div class="page-inner">
+      <div class="section-head">
+        <div class="eyebrow">CHAPTER 01 · 读一段连平</div>
+        <h2 class="section-title">四百年，四个节点</h2>
+      </div>
+
+      <div class="hist-curve-wrap">
+        <svg class="hist-line" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
+          <path vector-effect="non-scaling-stroke" d="M40 340 C 200 335 250 215 400 195 C 540 176 620 118 760 98 C 860 84 925 66 960 58"/>
+        </svg>
+        <button class="hist-dot is-on" data-i="0" style="left:6%;top:87%"><i></i><b>1634</b></button>
+        <button class="hist-dot" data-i="1" style="left:40%;top:51.3%"><i></i><b>1912</b></button>
+        <button class="hist-dot" data-i="2" style="left:76%;top:25.8%"><i></i><b>1988</b></button>
+        <button class="hist-dot" data-i="3" style="left:95.5%;top:15.8%"><i></i><b>今天</b></button>
+      </div>
+
+      <div class="hist-detail" id="histDetail">
+        <div class="detail-art">
+          <svg class="art-item is-on" viewBox="0 0 160 110" aria-hidden="true">
+            <g stroke="#8a6a45" stroke-width="2.2" fill="none" stroke-linecap="round">
+              <path d="M18 94 H142" stroke-width="3"/>
+              <path d="M46 94 V58 H114 V94"/>
+              <path d="M34 58 H126 L114 44 H46 Z" fill="#e7d5ae"/>
+              <path d="M64 94 V76 A16 16 0 0 1 96 76 V94"/>
+              <path d="M70 44 V32 M90 44 V32"/>
+              <path d="M60 32 H100" stroke-width="3"/>
+              <path d="M46 68 H56 M104 68 H114"/>
+            </g>
+          </svg>
+          <svg class="art-item" viewBox="0 0 160 110" aria-hidden="true">
+            <g stroke="#8a6a45" stroke-width="2.2" fill="none" stroke-linecap="round">
+              <rect x="42" y="16" width="76" height="76" rx="2" fill="#f9f1de"/>
+              <path d="M42 30 H118"/>
+              <path d="M54 42 H106 M54 52 H106 M54 62 H94"/>
+              <rect x="94" y="64" width="22" height="22" rx="1" stroke="#a3442f" stroke-width="2"/>
+              <path d="M100 70 L110 80 M110 70 L100 80" stroke="#a3442f"/>
+            </g>
+          </svg>
+          <svg class="art-item" viewBox="0 0 160 110" aria-hidden="true">
+            <g stroke="#8a6a45" stroke-width="2.2" fill="none" stroke-linecap="round">
+              <path d="M18 96 H142" stroke-width="3"/>
+              <path d="M62 96 V46 L80 32 L98 46 V96" fill="#e7d5ae"/>
+              <path d="M68 52 H92 M68 62 H92 M68 72 H84"/>
+              <path d="M34 96 Q42 78 50 96" stroke-width="1.6"/>
+              <path d="M110 96 Q118 80 126 96" stroke-width="1.6"/>
+            </g>
+          </svg>
+          <svg class="art-item" viewBox="0 0 160 110" aria-hidden="true">
+            <g stroke="#8a6a45" stroke-width="2.2" fill="none" stroke-linecap="round">
+              <path d="M10 94 H150" stroke-width="3"/>
+              <path d="M14 94 L44 56 L74 94" fill="#e7d5ae"/>
+              <path d="M56 94 L84 62 L112 94" fill="#dfcba4"/>
+              <path d="M92 94 V76 H126 V94" fill="#f0e3c6"/>
+              <path d="M84 76 L109 62 L134 76" fill="#cbb78f"/>
+              <path d="M104 94 V84 H116 V94"/>
+            </g>
+          </svg>
+        </div>
+        <div class="detail-body">
+          <div class="detail-top">
+            <span class="detail-year" id="histYear">1634</span>
+            <span class="detail-tag" id="histTag">明 · 崇祯七年</span>
+          </div>
+          <h3 id="histTitle">置连平州</h3>
+          <p id="histText">朝廷在这一带置连平州，属惠州府。州名取「连年平定」的意思——那年头，山里不太平。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 章 02 ===== -->
+  <section class="page" data-chapter="ch2">
+    <div class="page-inner">
+      <div class="section-head">
+        <div class="eyebrow">CHAPTER 02 · 走进山水</div>
+        <h2 class="section-title">九连山走到这里拐了个弯</h2>
+        <p class="section-lede">点一张照片，看看它在哪、是什么。</p>
+      </div>
+
+      <div class="nature-grid" id="natureGrid">
+        <button class="nature-card" data-place="0">
+          <img src="./img/karst.jpg" alt="内莞峰林">
+          <span>内莞 · 峰林</span>
+        </button>
+        <button class="nature-card" data-place="1">
+          <img src="./img/peach-garden.jpg" alt="上坪桃园">
+          <span>上坪 · 桃园</span>
+        </button>
+        <button class="nature-card" data-place="2">
+          <img src="./img/river.jpg" alt="内莞的河">
+          <span>内莞 · 河与雾</span>
+        </button>
+      </div>
+
+      <div class="nature-note" id="natureNote">
+        <b>连平在广东最北边。</b>北边是九连山，山那边就是江西。所以这里既有石头山，也有水和雾。
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4 花灯散架图 ===== -->
+  <section class="page" data-chapter="ch3">
+    <div class="page-inner" style="height:100%">
+      <div class="lantern-layout">
+
+        <div>
+          <div class="lantern-head">
+            <div class="eyebrow">03 · 点亮地方生活</div>
+            <h2>花灯的六个零件</h2>
+            <p>忠信花灯是六角形的，用竹篾一根根扎出来。点「拆开看看」，它会散成零件——把鼠标移到哪个零件上，右边就告诉你它是什么。</p>
+          </div>
+
+          <div class="stage-wrap">
+            <svg class="lantern-svg" id="lantern" viewBox="-80 -120 720 900" role="img" aria-label="忠信花灯结构图">
+              <defs>
+                <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#f7d79a"/>
+                  <stop offset=".45" stop-color="#f0b166"/>
+                  <stop offset="1" stop-color="#d9823f"/>
+                </linearGradient>
+                <linearGradient id="gBodySide" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#d99a55"/>
+                  <stop offset="1" stop-color="#a85c2c"/>
+                </linearGradient>
+                <linearGradient id="gCap" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#c0512f"/>
+                  <stop offset="1" stop-color="#8b3320"/>
+                </linearGradient>
+              </defs>
+
+              <!-- 引导线 -->
+              <g id="guides">
+                <path class="guide-line" d="M280 380 L280 250"/>
+                <path class="guide-line" d="M280 380 L80 210"/>
+                <path class="guide-line" d="M280 380 L480 330"/>
+                <path class="guide-line" d="M280 380 L50 440"/>
+                <path class="guide-line" d="M280 380 L100 570"/>
+                <path class="guide-line" d="M280 380 L480 580"/>
+              </g>
+
+              <!-- 灯穗 -->
+              <g class="lantern-part" data-part="tassel">
+                <g stroke="#a3442f" stroke-width="3" stroke-linecap="round" fill="none">
+                  <path d="M232 524 V590"/><path d="M280 524 V606"/><path d="M328 524 V590"/>
+                </g>
+                <g stroke="#b9573c" stroke-width="2.2" stroke-linecap="round" fill="none">
+                  <path d="M232 590 l-8 16 M232 590 l0 20 M232 590 l8 16"/>
+                  <path d="M280 606 l-9 18 M280 606 l0 22 M280 606 l9 18"/>
+                  <path d="M328 590 l-8 16 M328 590 l0 20 M328 590 l8 16"/>
+                </g>
+                <circle cx="280" cy="524" r="9" fill="#8b3320"/>
+              </g>
+
+              <!-- 灯裙 -->
+              <g class="lantern-part" data-part="skirt">
+                <path d="M176 470 L384 470 L396 516 L164 516 Z" fill="#a3442f"/>
+                <path d="M164 516 L396 516 L396 528 L164 528 Z" fill="#7c2e1e"/>
+                <path d="M196 470 L184 516 M280 470 V516 M364 470 L376 516" stroke="#7c2e1e" stroke-width="2" opacity=".5"/>
+                <path d="M176 470 L384 470" stroke="#e6b87a" stroke-width="2.4" opacity=".8"/>
+              </g>
+
+              <!-- 灯身 -->
+              <g class="lantern-part" data-part="body">
+                <path d="M176 190 L212 178 L212 478 L176 470 Z" fill="url(#gBodySide)"/>
+                <path d="M212 178 L348 178 L348 478 L212 478 Z" fill="url(#gBody)"/>
+                <path d="M348 178 L384 190 L384 470 L348 478 Z" fill="url(#gBodySide)"/>
+                <path d="M212 178 L348 178 L348 478 L212 478 Z" fill="none" stroke="#a3442f" stroke-width="2.6" opacity=".65"/>
+                <path d="M228 194 H332 M228 462 H332" stroke="#a3442f" stroke-width="3" opacity=".55"/>
+                <circle cx="280" cy="328" r="42" fill="none" stroke="#a3442f" stroke-width="2.6" opacity=".75"/>
+                <circle cx="280" cy="328" r="28" fill="none" stroke="#a3442f" stroke-width="1.6" opacity=".5"/>
+                <path d="M280 300 v56 M252 328 h56" stroke="#a3442f" stroke-width="2" opacity=".45"/>
+                <path d="M228 238 h104 M228 418 h104" stroke="#c9722f" stroke-width="1.4" opacity=".4"/>
+                <ellipse cx="280" cy="328" rx="150" ry="60" fill="url(#gBody)" opacity="0"/>
+              </g>
+
+              <!-- 灯骨 -->
+              <g class="lantern-part" data-part="frame" fill="none" stroke="#8a6a45" stroke-width="5.5" stroke-linecap="round">
+                <ellipse cx="280" cy="190" rx="106" ry="26"/>
+                <ellipse cx="280" cy="470" rx="106" ry="26"/>
+                <path d="M174 190 L174 470"/>
+                <path d="M386 190 L386 470"/>
+                <path d="M211 176 L211 478"/>
+                <path d="M349 176 L349 478"/>
+                <path d="M280 164 L280 496"/>
+                <path d="M232 172 L232 484" opacity=".55"/>
+                <path d="M328 172 L328 484" opacity=".55"/>
+              </g>
+
+              <!-- 灯帽 -->
+              <g class="lantern-part" data-part="cap">
+                <path d="M280 58 L372 104 L280 150 L188 104 Z" fill="url(#gCap)"/>
+                <path d="M188 104 L280 150 L372 104 L372 126 L280 174 L188 126 Z" fill="#8b3320"/>
+                <path d="M188 126 L280 174 L372 126" fill="none" stroke="#e6b87a" stroke-width="2" opacity=".6"/>
+                <path d="M280 58 L280 104 M198 100 L362 100" stroke="#e6b87a" stroke-width="1.6" opacity=".45"/>
+                <circle cx="280" cy="56" r="7" fill="#c49b52"/>
+              </g>
+
+              <!-- 提梁 -->
+              <g class="lantern-part" data-part="hook" fill="none" stroke="#8a6a45" stroke-width="5" stroke-linecap="round">
+                <path d="M280 16 V40"/>
+                <circle cx="280" cy="52" r="12"/>
+                <path d="M244 78 H316"/>
+              </g>
+
+              <!-- 零件编号 -->
+              <g id="badges" opacity="0" font-family="Georgia,serif" font-size="15" fill="#a3442f">
+                <text x="286" y="250">1</text>
+                <text x="86" y="206">2</text>
+                <text x="486" y="326">3</text>
+                <text x="56" y="436">4</text>
+                <text x="106" y="566">5</text>
+                <text x="486" y="576">6</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="lantern-side">
+          <div class="lantern-actions">
+            <button class="btn primary" id="btnExplode">拆开看看</button>
+            <button class="btn" id="btnReset">装回去</button>
+          </div>
+
+          <div class="info-card">
+            <div class="info-top">
+              <span class="info-no" id="infoNo">00</span>
+              <span class="info-title" id="infoTitle">六个零件</span>
+            </div>
+            <p class="info-text" id="infoText">点一下「拆开看看」，灯会散成六个零件；把鼠标移到哪个零件上，这里就告诉你它是什么、有什么用。</p>
+            <div class="info-hint" id="infoHint">鼠标移上去 · 手机上点一下</div>
+          </div>
+
+          <div class="ref-photo">
+            <img src="./img/lantern-structure.jpg" alt="忠信花灯实物">
+            <span>真实的花灯大概长这样——<br>纸是竹的骨，灯是年的脸。</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5 章 04 · 九重皮 ===== -->
+  <section class="page" data-chapter="ch4">
+    <div class="page-inner">
+      <div class="section-head">
+        <div class="eyebrow">CHAPTER 04 · 尝一口连平</div>
+        <h2 class="section-title">九重皮，一层一层摊</h2>
+      </div>
+
+      <div class="cook-layout">
+        <div class="pan-stage">
+          <svg class="pan-svg" id="panSvg" viewBox="0 0 460 340" role="img" aria-label="摊九重皮的竹蒸盘">
+            <defs>
+              <radialGradient id="floorG" cx=".5" cy=".5" r=".55">
+                <stop offset="0" stop-color="#c9ad80" stop-opacity=".5"/>
+                <stop offset="1" stop-color="#c9ad80" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="bambooTop" x1=".1" y1="0" x2=".5" y2="1">
+                <stop offset="0" stop-color="#e2c795"/>
+                <stop offset=".45" stop-color="#cfae74"/>
+                <stop offset="1" stop-color="#a7824c"/>
+              </linearGradient>
+              <linearGradient id="bambooSide" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#93703f"/>
+                <stop offset="1" stop-color="#6d512d"/>
+              </linearGradient>
+              <linearGradient id="cakeG" x1=".1" y1="0" x2=".35" y2="1">
+                <stop offset="0" stop-color="#fdf5e0"/>
+                <stop offset=".5" stop-color="#f5e3bb"/>
+                <stop offset="1" stop-color="#e4cb96"/>
+              </linearGradient>
+              <linearGradient id="lidG" x1=".1" y1="0" x2=".5" y2="1">
+                <stop offset="0" stop-color="#e5c898"/>
+                <stop offset=".55" stop-color="#c8a56d"/>
+                <stop offset="1" stop-color="#96733f"/>
+              </linearGradient>
+              <linearGradient id="porcelainG" x1=".1" y1="0" x2=".5" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset=".65" stop-color="#f7f1e4"/>
+                <stop offset="1" stop-color="#e0d5c2"/>
+              </linearGradient>
+              <linearGradient id="milkG" x1="0" y1="0" x2=".2" y2="1">
+                <stop offset="0" stop-color="#fffef9"/>
+                <stop offset="1" stop-color="#f2e6cc"/>
+              </linearGradient>
+              <linearGradient id="streamG" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#fffdf6"/>
+                <stop offset="1" stop-color="#f0e2c2"/>
+              </linearGradient>
+              <linearGradient id="bladeG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f0ede5"/>
+                <stop offset=".45" stop-color="#c2beb2"/>
+                <stop offset="1" stop-color="#8a877d"/>
+              </linearGradient>
+              <linearGradient id="pieceG" x1=".2" y1="0" x2=".5" y2="1">
+                <stop offset="0" stop-color="#f7e2b0"/>
+                <stop offset=".5" stop-color="#eecd8f"/>
+                <stop offset="1" stop-color="#dcb772"/>
+              </linearGradient>
+              <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="4"/>
+              </filter>
+              <filter id="soft2" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="1.6"/>
+              </filter>
+              <clipPath id="cakeClip"><ellipse cx="250" cy="197" rx="112" ry="36"/></clipPath>
+            </defs>
+
+            <g id="panGroup">
+              <ellipse cx="250" cy="256" rx="168" ry="34" fill="url(#floorG)"/>
+
+              <!-- 米浆碗 -->
+              <g id="bowlSet">
+                <path d="M28 266 A46 15 0 0 0 120 266 L110 303 A38 13 0 0 1 38 303 Z" fill="url(#porcelainG)" stroke="#c9bda8" stroke-width="1.2"/>
+                <ellipse cx="74" cy="266" rx="46" ry="15" fill="#f4ead6" stroke="#c9bda8" stroke-width="1.2"/>
+                <ellipse cx="74" cy="266" rx="40" ry="12" fill="url(#milkG)"/>
+                <ellipse cx="62" cy="263" rx="11" ry="4" fill="#fffdf7" opacity=".75"/>
+              </g>
+
+              <!-- 竹蒸盘 -->
+              <path d="M118 198 A132 46 0 0 0 382 198 L382 214 A132 46 0 0 1 118 214 Z" fill="url(#bambooSide)"/>
+              <ellipse cx="250" cy="198" rx="132" ry="46" fill="url(#bambooTop)" stroke="#8a6a3e" stroke-width="1.4"/>
+              <ellipse cx="250" cy="197" rx="116" ry="38" fill="#f7ecd6" stroke="#b08d55" stroke-width="1.2"/>
+              <ellipse cx="250" cy="198" rx="124" ry="43" fill="none" stroke="#9a7a48" stroke-width="1" stroke-dasharray="3 5" opacity=".75"/>
+              <ellipse cx="250" cy="197" rx="112" ry="36" fill="none" stroke="#dcc9a4" stroke-width="1" stroke-dasharray="7 9" opacity=".55"/>
+              <path d="M118 198 A132 46 0 0 1 382 198" fill="none" stroke="#79582f" stroke-width="3" opacity=".22"/>
+              <path d="M134 197 A116 38 0 0 0 366 197" fill="none" stroke="#b9935c" stroke-width="2" opacity=".35"/>
+              <path d="M124 200 Q250 226 376 200" fill="none" stroke="#8a6a3e" stroke-width="1" stroke-dasharray="2 6" opacity=".45"/>
+
+              <!-- 一层层的皮 -->
+              <g id="layersG"></g>
+              <ellipse id="topSheen" cx="250" cy="198" rx="86" ry="24" fill="#ffffff" opacity="0" filter="url(#soft2)"/>
+
+              <!-- 刀纹（菱形） -->
+              <g id="cakeCut" opacity="0" clip-path="url(#cakeClip)" stroke="#a8814c" stroke-width="1.3" stroke-linecap="round">
+                <path d="M120 150 L380 238"/>
+                <path d="M120 172 L380 260"/>
+                <path d="M120 194 L380 282"/>
+                <path d="M120 238 L380 150"/>
+                <path d="M120 260 L380 172"/>
+                <path d="M120 282 L380 194"/>
+              </g>
+
+              <!-- 菜刀 -->
+              <g id="knife" opacity="0">
+                <rect x="286" y="126" width="86" height="36" rx="2" fill="url(#bladeG)" stroke="#7e7a70" stroke-width="1.2"/>
+                <rect x="286" y="158" width="86" height="5" rx="2" fill="#d8d4c9" opacity=".85"/>
+                <rect x="372" y="132" width="28" height="12" rx="4" fill="#6d4a2b"/>
+              </g>
+
+              <!-- 竹锅盖 -->
+              <g id="panLid" opacity="0">
+                <ellipse cx="250" cy="200" rx="136" ry="48" fill="url(#lidG)" stroke="#85653a" stroke-width="1.4"/>
+                <path d="M124 190 Q250 106 376 190 Q250 150 124 190 Z" fill="#dcbf8d" opacity=".9"/>
+                <path d="M154 178 Q250 126 346 178" fill="none" stroke="#a8843f" stroke-width="1" opacity=".55"/>
+                <path d="M178 162 Q250 138 322 162" fill="none" stroke="#a8843f" stroke-width="1" opacity=".45"/>
+                <path d="M250 154 V194" stroke="#a8843f" stroke-width="1" opacity=".3"/>
+                <rect x="234" y="116" width="32" height="13" rx="6" fill="#8a6a3e"/>
+                <rect x="234" y="116" width="32" height="5" rx="2.5" fill="#a8843f" opacity=".7"/>
+              </g>
+
+              <!-- 蒸汽 -->
+              <g id="steam" opacity="0" filter="url(#soft)" fill="none" stroke="#f4ecdb" stroke-width="11" stroke-linecap="round">
+                <path d="M196 148 C 186 124 206 114 196 90"/>
+                <path d="M250 140 C 240 112 262 100 252 72"/>
+                <path d="M304 148 C 294 124 314 114 304 90"/>
+              </g>
+
+              <!-- 木勺 -->
+              <g id="ladle">
+                <path d="M44 252 A26 9 0 0 0 96 252 L90 273 A22 7 0 0 1 50 273 Z" fill="#c79a63" stroke="#9c7340" stroke-width="1.2"/>
+                <ellipse cx="70" cy="252" rx="26" ry="9" fill="url(#milkG)" stroke="#a9803f" stroke-width="1"/>
+                <path d="M60 260 Q70 267 80 260" fill="none" stroke="#9c7340" stroke-width="1" opacity=".5"/>
+                <path d="M92 247 L128 222" stroke="#7d5a31" stroke-width="5" stroke-linecap="round"/>
+                <path d="M92 247 L128 222" stroke="#a67f4c" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+              </g>
+
+              <!-- 倒浆 -->
+              <g id="pour" opacity="0">
+                <path id="pourStream" d="M172 146 Q193 170 214 188" fill="none" stroke="url(#streamG)" stroke-width="6" stroke-linecap="round" stroke-dasharray="16 9"/>
+                <ellipse id="pourSplash" cx="214" cy="188" rx="15" ry="5" fill="#fbf1da" opacity=".85"/>
+              </g>
+            </g>
+
+            <!-- 装盘 -->
+            <g id="served" opacity="0">
+              <ellipse cx="250" cy="244" rx="152" ry="40" fill="#6f5330" opacity=".16" filter="url(#soft)"/>
+              <ellipse cx="250" cy="222" rx="150" ry="52" fill="url(#porcelainG)" stroke="#b6a68d" stroke-width="1.8"/>
+              <ellipse cx="250" cy="220" rx="134" ry="45" fill="none" stroke="#d3c4ad" stroke-width="1.4"/>
+              <ellipse cx="250" cy="219" rx="124" ry="40" fill="#fbf7ee" stroke="#e3d9c8" stroke-width="1"/>
+              <g id="servedCake"></g>
+              <g fill="#66743a">
+                <ellipse cx="214" cy="204" rx="4.5" ry="2.4" transform="rotate(-18 214 204)"/>
+                <ellipse cx="268" cy="197" rx="4" ry="2.2" transform="rotate(24 268 197)"/>
+                <ellipse cx="296" cy="224" rx="4.5" ry="2.4" transform="rotate(-30 296 224)"/>
+                <ellipse cx="230" cy="246" rx="4" ry="2.2" transform="rotate(12 230 246)"/>
+                <ellipse cx="320" cy="240" rx="3.6" ry="2" transform="rotate(-8 320 240)"/>
+                <ellipse cx="186" cy="222" rx="3.6" ry="2" transform="rotate(32 186 222)"/>
+              </g>
+              <!-- 酱油碟 -->
+              <g>
+                <ellipse cx="112" cy="250" rx="30" ry="12" fill="url(#porcelainG)" stroke="#bfae95" stroke-width="1.2"/>
+                <ellipse cx="112" cy="249" rx="21" ry="7.5" fill="#5b3a1e"/>
+                <ellipse cx="106" cy="247" rx="7" ry="2.4" fill="#8a5f35" opacity=".5"/>
+              </g>
+              <!-- 筷子 -->
+              <g stroke="#8a6739" stroke-linecap="round">
+                <path d="M356 252 L424 200" stroke-width="3.2"/>
+                <path d="M360 259 L428 207" stroke-width="3.2"/>
+                <path d="M356 252 L424 200" stroke="#b08a55" stroke-width="1.1" opacity=".6"/>
+                <path d="M360 259 L428 207" stroke="#b08a55" stroke-width="1.1" opacity=".6"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="cook-side">
+          <div class="cook-counter" id="cookCount">已摊 0 / 9 层</div>
+          <div class="cook-step" id="cookStep">米浆磨好了，舀一勺摊进盘里。</div>
+          <button class="btn primary cook-btn" id="cookBtn">舀一勺</button>
+          <p class="cook-note">九重皮是连平的客家吃食：一勺米浆摊满一盘，上锅蒸到凝住，揭盖再摊一层，前后九重。趁热切成菱形，蘸酱油吃。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6 章 04 · 桃与菇 ===== -->
+  <section class="page" data-chapter="ch4">
+    <div class="page-inner">
+      <div class="section-head">
+        <div class="eyebrow">CHAPTER 04 · 尝一口连平</div>
+        <h2 class="section-title">还有两样，得单独说</h2>
+      </div>
+
+      <div class="food-cards">
+        <article class="food-card">
+          <svg class="food-art" viewBox="0 0 300 300" role="img" aria-label="鹰嘴桃">
+            <defs>
+              <radialGradient id="peachG" cx="34%" cy="28%" r="78%">
+                <stop offset="0" stop-color="#ffe2da"/>
+                <stop offset=".42" stop-color="#f8a79a"/>
+                <stop offset="1" stop-color="#cf5b58"/>
+              </radialGradient>
+              <linearGradient id="leafG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#8fae74"/>
+                <stop offset="1" stop-color="#4f7449"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="150" cy="252" rx="86" ry="16" fill="#3a3126" opacity=".12"/>
+            <path d="M152 62 C 96 38 52 82 60 138 C 68 196 110 232 148 252 C 158 257 166 257 176 252 C 216 232 252 194 258 138 C 264 82 214 38 166 62 Z" fill="url(#peachG)"/>
+            <path d="M158 64 Q148 156 166 250" fill="none" stroke="#c96b63" stroke-width="3" opacity=".55"/>
+            <path d="M152 62 Q 132 96 116 88 Q 128 66 152 62 Z" fill="#e8887d" opacity=".5"/>
+            <ellipse cx="112" cy="112" rx="26" ry="34" fill="#fff6f2" opacity=".38" transform="rotate(-24 112 112)"/>
+            <path d="M160 58 Q174 22 210 16 Q216 52 178 68 Z" fill="url(#leafG)"/>
+            <path d="M162 60 Q182 36 206 26" fill="none" stroke="#3f6139" stroke-width="2" opacity=".55"/>
+          </svg>
+          <h3>上坪鹰嘴桃</h3>
+          <p>七月熟，尖上带个弯钩，咬开脆得响。上坪的桃是连平最出名的一样东西。</p>
+        </article>
+
+        <article class="food-card">
+          <svg class="food-art" viewBox="0 0 300 300" role="img" aria-label="香菇">
+            <defs>
+              <radialGradient id="capG" cx="36%" cy="22%" r="80%">
+                <stop offset="0" stop-color="#a97a55"/>
+                <stop offset=".55" stop-color="#7c5339"/>
+                <stop offset="1" stop-color="#4d3223"/>
+              </radialGradient>
+              <linearGradient id="stemG" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#e8dcc2"/>
+                <stop offset=".5" stop-color="#fbf3e2"/>
+                <stop offset="1" stop-color="#cdbc9e"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="150" cy="258" rx="78" ry="14" fill="#3a3126" opacity=".12"/>
+            <path d="M124 156 Q120 216 132 250 Q150 258 168 250 Q180 216 176 156 Z" fill="url(#stemG)"/>
+            <path d="M128 176 Q150 186 172 176" fill="none" stroke="#c9b794" stroke-width="2" opacity=".7"/>
+            <path d="M62 152 C 62 78 238 78 238 152 Q150 186 62 152 Z" fill="url(#capG)"/>
+            <path d="M66 150 Q150 184 234 150" fill="none" stroke="#e2cfae" stroke-width="3" opacity=".45"/>
+            <ellipse cx="112" cy="118" rx="34" ry="18" fill="#fff" opacity=".14" transform="rotate(-18 112 118)"/>
+            <path d="M84 150 Q110 166 140 172 M100 148 Q124 164 152 170 M120 147 Q144 162 172 168 M140 146 Q164 160 192 164 M160 145 Q184 157 210 160" fill="none" stroke="#3d2619" stroke-width="1.6" opacity=".45"/>
+          </svg>
+          <h3>连平香菇</h3>
+          <p>在山里的椴木上长，晒干了收起来，炖汤最香。山高、雾重，长得慢，味就厚。</p>
+        </article>
+      </div>
+
+      <div class="food-foot">三月看桃花，七月摘桃；冬菇要等冬至前后的北风。</div>
+    </div>
+  </section>
+
+  <!-- ===== 6 尾页 ===== -->
+  <section class="page" data-chapter="end">
+    <div class="page-inner end">
+      <div class="eyebrow">连平 · LIANPING</div>
+      <h2>翻到这儿，就算来过了</h2>
+      <p>
+        连平不大，一本小册子装得下，又装不下。<br>
+        山在那里，灯在那里，九重皮在锅里——什么时候路过，进去看看。
+      </p>
+      <button class="btn primary" id="btnHome">回到目录</button>
+    </div>
+  </section>
+
+</div>
+
+<div class="pager" id="pager">
+  <button class="pg-btn" id="prev" aria-label="上一页">←</button>
+  <span class="pg-num" id="pageNum">— 01 —</span>
+  <button class="pg-btn" id="next" aria-label="下一页">→</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
