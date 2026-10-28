@@ -1,9 +1,10 @@
 (function () {
   var hasGsap = typeof window.gsap !== 'undefined';
+  var hasAnime = typeof window.anime !== 'undefined';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
   var total = pages.length;
-  var idx = 0, busy = false;
+  var idx = 0;
 
   var pager = document.getElementById('pager');
   var navHome = document.getElementById('navHome');
@@ -17,7 +18,6 @@
 
   function updateUI() {
     pageNum.textContent = '— ' + pad(idx + 1) + ' —';
-    prog.style.width = ((idx + 1) / total * 100) + '%';
     btnPrev.disabled = idx === 0;
     btnNext.disabled = idx === total - 1;
     pager.classList.add('show');
@@ -28,56 +28,31 @@
     });
   }
 
-  function finishSwap(cur, next) {
-    if (cur) {
-      cur.classList.remove('is-current', 'is-leaving');
-      cur.style.transform = '';
-      cur.style.opacity = '';
-      cur.style.zIndex = '';
-    }
-    next.style.transform = '';
-    next.style.opacity = '';
-    next.style.zIndex = '';
-    busy = false;
-  }
-
-  function go(n) {
-    if (busy || n === idx || n < 0 || n >= total) return;
-    busy = true;
-
-    var forward = n > idx;
-    var cur = pages[idx];
-    var next = pages[n];
-
-    next.style.zIndex = '5';
-    cur.style.zIndex = '4';
-    next.classList.add('is-current');
-    cur.classList.add('is-leaving');
-
-    if (!hasGsap || reduced) {
-      finishSwap(cur, next);
-      idx = n;
-      updateUI();
-      return;
-    }
-
-    gsap.set(cur, { transformOrigin: forward ? 'left center' : 'right center' });
-    gsap.set(next, { transformOrigin: forward ? 'right center' : 'left center' });
-
-    var tl = gsap.timeline({
-      onComplete: function () {
-        finishSwap(cur, next);
-        idx = n;
-        updateUI();
+  // 当前屏检测：哪一页占据视口中央，就把页码/书签切到哪一页
+  var pageIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) {
+        var i = pages.indexOf(en.target);
+        if (i !== -1 && i !== idx) { idx = i; updateUI(); }
+        en.target.classList.add('in-view');
       }
     });
+  }, { rootMargin: '-42% 0px -42% 0px' });
+  pages.forEach(function (p) { pageIO.observe(p); });
 
-    tl.fromTo(next,
-      { rotationY: forward ? 62 : -62, x: forward ? 46 : -46, opacity: 0 },
-      { rotationY: 0, x: 0, opacity: 1, duration: 0.72, ease: 'power2.out' }, 0);
+  // 顶部进度条：跟随整体滚动
+  function updateProg() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    prog.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + '%';
+  }
+  document.addEventListener('scroll', updateProg, { passive: true });
 
-    tl.to(cur,
-      { rotationY: forward ? -78 : 78, x: forward ? -36 : 36, opacity: 0, duration: 0.6, ease: 'power2.in' }, 0);
+  function go(n) {
+    if (n < 0 || n >= total) return;
+    idx = n;
+    updateUI();
+    pages[n].scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
   }
 
   btnPrev.addEventListener('click', function () { go(idx - 1); });
@@ -96,22 +71,25 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); go(idx + 1); }
     if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(idx - 1); }
-    if (e.key === 'Home') { e.preventDefault(); go(1); }
+    if (e.key === 'Home') { e.preventDefault(); go(0); }
   });
 
-  var sx = 0, sy = 0, tracking = false;
-  document.addEventListener('pointerdown', function (e) {
-    if (e.target.closest('button') || e.target.closest('.toc-item') || e.target.closest('.lantern-part')) return;
-    sx = e.clientX; sy = e.clientY; tracking = true;
-  });
-  document.addEventListener('pointerup', function (e) {
-    if (!tracking) return;
-    tracking = false;
-    var dx = e.clientX - sx, dy = e.clientY - sy;
-    if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy)) {
-      go(dx < 0 ? idx + 1 : idx - 1);
-    }
-  });
+  // ====== 入场浮现（Anime.js）：各章元素滚入视口时轻轻浮起 ======
+  if (hasAnime && !reduced) {
+    var animate = anime.animate;
+    var revealSel = '.eyebrow, .cover-text > *, .photo-frame, .toc-item, .nature-card, .nature-note, .hist-curve-wrap, .hist-detail, .lantern-stage, .lantern-side, .cook-stage, .cook-side, .food-card, .end-inner > *';
+    var revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        revealIO.unobserve(en.target);
+        animate(en.target, { opacity: [0, 1], y: [26, 0], duration: 750, ease: 'outQuad' });
+      });
+    }, { threshold: 0.12 });
+    Array.prototype.forEach.call(document.querySelectorAll(revealSel), function (el) {
+      el.style.opacity = '0';
+      revealIO.observe(el);
+    });
+  }
 
   // ====== 花灯散架图 ======
   var INFO = {
@@ -517,6 +495,7 @@
   cookBtn.addEventListener('click', cookNext);
 
   // ====== 初始化 ======
-  pages[0].classList.add('is-current');
+  pages[0].classList.add('in-view');
   updateUI();
+  updateProg();
 })();
